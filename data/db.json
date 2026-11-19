@@ -1,13 +1,13 @@
 {
   "settings": {
-    "companyName": "RegisterPro MLM Network",
+    "companyName": "Hitechpower MLM Network",
     "joiningFee": 1999,
     "upiId": "merchant@upi",
     "qrUrl": "",
-    "bankDetails": "Bank: State Bank of India\nA/C: 1234567890\nIFSC: SBIN0001234\nHolder: RegisterPro Enterprises",
+    "bankDetails": "Bank: State Bank of India\nA/C: 1234567890\nIFSC: SBIN0001234\nHolder: Hitechpower Enterprises",
     "maxLevels": 100,
     "supportMobile": "+91 9876543210",
-    "supportEmail": "support@registerpro.com"
+    "supportEmail": "support@hitechpower.com"
   },
   "users": [
     {

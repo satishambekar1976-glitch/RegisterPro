@@ -7,14 +7,14 @@ const DATA_FILE = path.join(__dirname, '..', 'data', 'db.json');
 // Initial schema defaults
 const defaultSchema = {
   settings: {
-    companyName: 'RegisterPro MLM Network',
+    companyName: 'Hitechpower MLM Network',
     joiningFee: 1999,
     upiId: 'merchant@upi',
     qrUrl: '',
-    bankDetails: 'Bank: State Bank of India\nA/C: 1234567890\nIFSC: SBIN0001234\nHolder: RegisterPro Enterprises',
+    bankDetails: 'Bank: State Bank of India\nA/C: 1234567890\nIFSC: SBIN0001234\nHolder: Hitechpower Enterprises',
     maxLevels: 100,
     supportMobile: '+91 9876543210',
-    supportEmail: 'support@registerpro.com'
+    supportEmail: 'support@hitechpower.com'
   },
   users: [],
   devices: [
@@ -181,7 +181,7 @@ class Database {
 
   createUser(userData) {
     const memberNum = (this.data.users.filter(u => u.role !== 'admin').length + 1).toString().padStart(5, '0');
-    const memberId = `RP${memberNum}`;
+    const memberId = `HP${memberNum}`;
     const id = `USR-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
 
     // Compute upline chain up to 100 levels

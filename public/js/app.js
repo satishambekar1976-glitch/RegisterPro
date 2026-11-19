@@ -91,7 +91,7 @@ const App = {
 
       const qrImg = document.getElementById('qrCodeImg');
       if (qrImg) {
-        qrImg.src = this.config.qrUrl || `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=${encodeURIComponent(this.config.upiId)}&pn=RegisterPro&am=${this.config.joiningFee}&cu=INR`;
+        qrImg.src = this.config.qrUrl || `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=${encodeURIComponent(this.config.upiId)}&pn=Hitechpower&am=${this.config.joiningFee}&cu=INR`;
       }
     } catch (err) {
       console.error('Config load failed:', err);
@@ -677,7 +677,7 @@ const App = {
   shareOnWhatsApp() {
     const input = document.getElementById('myReferralLink');
     if (!input || !input.value) return;
-    const text = encodeURIComponent(`Start your direct tech device business on RegisterPro! Join my 100-level network using my referral link:\n${input.value}`);
+    const text = encodeURIComponent(`Start your direct tech device business on Hitechpower! Join my 100-level network using my referral link:\n${input.value}`);
     window.open(`https://wa.me/?text=${text}`, '_blank');
   },
 

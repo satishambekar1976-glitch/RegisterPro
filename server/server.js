@@ -639,7 +639,7 @@ app.get('*', (req, res) => {
 // Start Server
 app.listen(PORT, () => {
   console.log(`===============================================`);
-  console.log(` RegisterPro MLM 100-Level Server Running!     `);
+  console.log(` Hitechpower MLM 100-Level Server Running!     `);
   console.log(` Port: http://localhost:${PORT}                 `);
   console.log(` Mode: Production-ready Node.js & Express App   `);
   console.log(` Default Admin: admin@registerpro.demo          `);

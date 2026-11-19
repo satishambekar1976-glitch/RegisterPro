@@ -1,7 +1,7 @@
 {
-  "name": "registerpro",
+  "name": "hitechpower",
   "version": "2.0.0",
-  "description": "RegisterPro — 100-Level MLM Referral & Device Sales Commission Web Application",
+  "description": "Hitechpower — 100-Level MLM Referral & Device Sales Commission Web Application",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
