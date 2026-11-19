@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RegisterPro — 100-Level MLM Referral & Device Sales Platform</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-wrap" data-nav="home">
+        <div class="brand-logo">RP</div>
+        <div>
+          <div class="brand-name">Register<span>Pro</span></div>
+          <div style="font-size: 11px; color: #94a3b8;">100-Level MLM & Device Network</div>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <button class="btn btn-sm btn-outline nav-guest" data-nav="home">Home</button>
+        <button class="btn btn-sm btn-outline nav-guest" data-nav="register">Register</button>
+        <button class="btn btn-sm btn-primary nav-guest" data-nav="login">Sign In</button>
+
+        <span id="topUserBadge" class="brand-badge" style="display: none;">User</span>
+        <button class="btn btn-sm btn-outline nav-member" data-nav="dashboard" style="display: none;">Dashboard</button>
+        <button class="btn btn-sm btn-outline nav-member" data-nav="payment" style="display: none;">Payment Status</button>
+        <button class="btn btn-sm btn-primary nav-admin" data-nav="admin" style="display: none;">Admin Panel</button>
+        <button id="logoutBtn" class="btn btn-sm btn-danger nav-member" style="display: none;">Logout</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container">
+
+    <!-- ================= VIEW: HOME ================= -->
+    <section id="view-home" class="view-section active">
+      <div class="grid grid-12">
+        <div class="card col-8">
+          <span class="badge badge-blue">Multi-Level Direct Selling Platform</span>
+          <h1 style="font-size: 32px; font-weight: 800; margin: 16px 0 10px; line-height: 1.2;">
+            Grow Your 100-Level Network & Earn Device Sales Commissions
+          </h1>
+          <p style="color: var(--text-muted); font-size: 15px; margin-bottom: 24px;">
+            Join RegisterPro with a one-time joining fee of <b class="display-joining-fee">₹1,999</b>. Share your unique referral link to build an unlimited direct team and a deep 100-level downline hierarchy. Earn lucrative slab-based commissions on every tech device sold across your network!
+          </p>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <button class="btn btn-primary" data-nav="register">Create Account Now</button>
+            <button class="btn btn-secondary" data-nav="login">Member Login</button>
+          </div>
+        </div>
+
+        <div class="card col-4">
+          <div class="stat-label">One-Time Joining Fee</div>
+          <div class="stat-value display-joining-fee" style="color: var(--blue);">₹1,999</div>
+          <p style="color: var(--text-muted); font-size: 13px; margin: 8px 0 16px;">
+            Includes membership activation, personal referral link, 100-level tree access, and device catalog.
+          </p>
+          <div style="background: #f8fafc; border-radius: 8px; padding: 12px; font-size: 12px; border: 1px solid var(--border);">
+            ✓ 100 Levels Depth Tracking<br>
+            ✓ Device Sales Slab Income<br>
+            ✓ Real-time Digital Wallet<br>
+            ✓ Fast Bank/UPI Payouts
+          </div>
+        </div>
+
+        <!-- Highlights Grid -->
+        <div class="card col-12">
+          <div class="card-header">
+            <h2 class="card-title">How The RegisterPro MLM Business Works</h2>
+          </div>
+          <div class="grid grid-4">
+            <div class="stat-card">
+              <div style="font-size: 20px; font-weight: 800; color: var(--blue); margin-bottom: 6px;">1. Register</div>
+              <p style="font-size: 13px; color: var(--text-muted);">
+                Sign up using your sponsor's referral link or enter their referral code. Pay the one-time ₹1,999 joining fee via UPI.
+              </p>
+            </div>
+            <div class="stat-card gold">
+              <div style="font-size: 20px; font-weight: 800; color: var(--gold); margin-bottom: 6px;">2. Get Activated</div>
+              <p style="font-size: 13px; color: var(--text-muted);">
+                Once Admin verifies your payment reference (UTR), your account activates and unlocks your personal referral link.
+              </p>
+            </div>
+            <div class="stat-card purple">
+              <div style="font-size: 20px; font-weight: 800; color: #8b5cf6; margin-bottom: 6px;">3. Build Team</div>
+              <p style="font-size: 13px; color: var(--text-muted);">
+                Share your link on WhatsApp and social media. Bring unlimited direct members into Level 1, and watch them grow up to 100 levels!
+              </p>
+            </div>
+            <div class="stat-card green">
+              <div style="font-size: 20px; font-weight: 800; color: var(--green); margin-bottom: 6px;">4. Earn on Sales</div>
+              <p style="font-size: 13px; color: var(--text-muted);">
+                Every time a smart device is sold in your 100-level downline, commissions disburse automatically into your wallet based on the slab.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW: REGISTER ================= -->
+    <section id="view-register" class="view-section">
+      <div class="card" style="max-width: 640px; margin: 0 auto;">
+        <div class="card-header">
+          <div>
+            <h1 style="font-size: 22px; font-weight: 800;">Register New Account</h1>
+            <p style="color: var(--text-muted); font-size: 13px;">Create your member account to begin building your 100-level team</p>
+          </div>
+          <span class="badge badge-blue">Joining Fee: <span class="display-joining-fee">₹1,999</span></span>
+        </div>
+
+        <!-- Detected Sponsor Banner -->
+        <div id="sponsorInfoBox" class="alert alert-success" style="display: none; margin-bottom: 18px;">
+          <div style="font-size: 13px;">You are joining under Sponsor:</div>
+          <div id="sponsorNameDisplay" style="font-size: 15px; font-weight: 700; margin-top: 2px;">—</div>
+          <div id="sponsorDetailsDisplay" style="font-size: 12px; color: #15803d;">—</div>
+        </div>
+
+        <form id="registerForm">
+          <div class="grid grid-2">
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" name="name" class="form-control" required placeholder="Enter your full name" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address *</label>
+              <input type="email" name="email" class="form-control" required placeholder="name@example.com" />
+            </div>
+          </div>
+
+          <div class="grid grid-2">
+            <div class="form-group">
+              <label class="form-label">Mobile Number *</label>
+              <input type="tel" name="mobile" pattern="[0-9]{10}" class="form-control" required placeholder="10-digit mobile" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Password *</label>
+              <input type="password" name="password" minlength="6" class="form-control" required placeholder="Min 6 characters" />
+            </div>
+          </div>
+
+          <div class="grid grid-2">
+            <div class="form-group">
+              <label class="form-label">City</label>
+              <input type="text" name="city" class="form-control" placeholder="Your City" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">State</label>
+              <input type="text" name="state" class="form-control" placeholder="Your State" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Sponsor / Referral Code</label>
+            <input type="text" id="referralCodeInput" name="referralCode" class="form-control" placeholder="Auto-filled from referral link or enter sponsor ID" />
+            <small style="color: var(--text-muted); font-size: 11px;">Leave blank to join directly under company/admin top position</small>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; margin-top: 10px;">
+            Continue to Payment (<span class="display-joining-fee">₹1,999</span>)
+          </button>
+        </form>
+
+        <div style="text-align: center; margin-top: 16px; font-size: 13px; color: var(--text-muted);">
+          Already have an account? <a href="#" data-nav="login" style="color: var(--blue); font-weight: 600;">Sign in here</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW: LOGIN ================= -->
+    <section id="view-login" class="view-section">
+      <div class="card" style="max-width: 440px; margin: 40px auto;">
+        <div class="card-header">
+          <h1 style="font-size: 20px; font-weight: 800;">Sign In</h1>
+          <span class="badge badge-blue">Member & Admin</span>
+        </div>
+
+        <form id="loginForm">
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" name="email" class="form-control" required placeholder="name@example.com" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" required placeholder="Your password" />
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 11px; margin-top: 10px;">
+            Sign In
+          </button>
+        </form>
+
+        <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-muted);">
+          <b>Admin Demo Access:</b><br>
+          Email: <code style="background: #e2e8f0; padding: 2px 4px; border-radius: 4px;">admin@registerpro.demo</code><br>
+          Password: <code style="background: #e2e8f0; padding: 2px 4px; border-radius: 4px;">Admin123!</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW: PAYMENT ================= -->
+    <section id="view-payment" class="view-section">
+      <div class="card" style="max-width: 760px; margin: 0 auto;">
+        <div class="card-header">
+          <div>
+            <h1 style="font-size: 22px; font-weight: 800;">Complete Membership Joining Payment</h1>
+            <p style="color: var(--text-muted); font-size: 13px;" id="paymentForName">—</p>
+          </div>
+          <span class="badge badge-orange">Status: Pending Verification</span>
+        </div>
+
+        <div id="paymentStatusNotice" class="alert alert-info">
+          Scan the QR code below and pay the registration fee. Submit your UTR reference to verify and activate your 100-level account.
+        </div>
+
+        <div class="grid grid-2" style="margin-top: 20px;">
+          <!-- Left: QR Code & Bank Info -->
+          <div class="qr-container">
+            <div style="font-weight: 700; font-size: 14px;">Scan & Pay via any UPI App</div>
+            <img id="qrCodeImg" class="qr-code-img" src="" alt="Payment QR Code" />
+            <div class="stat-value display-joining-fee" style="font-size: 24px; color: var(--blue);">₹1,999</div>
+            <div style="font-size: 13px; font-weight: 700; margin-top: 6px;">UPI ID: <span class="display-upi-id" style="color: var(--navy);">—</span></div>
+            <div style="margin-top: 14px; text-align: left; font-size: 12px; background: white; border: 1px solid var(--border); padding: 10px; border-radius: 8px;">
+              <b>Bank Transfer Details:</b>
+              <pre class="display-bank-details" style="font-family: inherit; margin-top: 4px; white-space: pre-wrap; color: var(--text-muted);"></pre>
+            </div>
+          </div>
+
+          <!-- Right: UTR Submission Form -->
+          <div>
+            <form id="paymentForm">
+              <div class="form-group">
+                <label class="form-label">UPI Transaction Reference (UTR / Txn ID) *</label>
+                <input type="text" name="utr" class="form-control" required placeholder="e.g. 425689123456" minlength="8" />
+                <small style="color: var(--text-muted); font-size: 11px;">You will find this 12-digit number in GPay, PhonePe, Paytm, or bank SMS</small>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Payment Screenshot (Optional)</label>
+                <input type="file" name="receipt" class="form-control" accept="image/png,image/jpeg,image/webp" />
+              </div>
+
+              <button type="submit" class="btn btn-success" style="width: 100%; padding: 12px; margin-top: 14px;">
+                Submit Payment Details
+              </button>
+            </form>
+
+            <div style="margin-top: 16px; font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+              ℹ️ Once submitted, the Administrator will verify your UTR and activate your account. You will receive access to your 100-level referral link and team tree immediately upon approval.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW: MEMBER DASHBOARD ================= -->
+    <section id="view-dashboard" class="view-section">
+      <!-- Top Member Banner -->
+      <div class="card" style="background: linear-gradient(135deg, #0f172a, #1e293b); color: white;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <div style="font-size: 13px; color: #94a3b8;">Welcome back,</div>
+            <h1 style="font-size: 26px; font-weight: 800;" id="dashMemberName">—</h1>
+            <div style="font-size: 13px; color: #cbd5e1; display: flex; gap: 12px; margin-top: 4px;">
+              <span>Member ID: <b id="dashMemberId" style="color: #60a5fa;">—</b></span>
+              <span id="mySponsorInfo" style="color: #94a3b8;">—</span>
+            </div>
+          </div>
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <span id="dashMemberStatus" class="badge badge-green">Active</span>
+            <button class="btn btn-sm btn-outline" onclick="App.openWithdrawModal()">Request Payout</button>
+          </div>
+        </div>
+
+        <!-- Referral Link Card -->
+        <div id="refLinkCard" style="margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1);">
+          <div style="font-size: 13px; font-weight: 700; color: #93c5fd; margin-bottom: 6px;">Your 100-Level Referral Link:</div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <input type="text" id="myReferralLink" readonly class="form-control" style="flex: 1; min-width: 260px; background: rgba(255,255,255,0.9); font-weight: 600;" />
+            <button id="copyRefBtn" class="btn btn-primary btn-sm">Copy Link</button>
+            <button id="shareWhatsappBtn" class="btn btn-success btn-sm">Share on WhatsApp</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="grid grid-4" style="margin-bottom: 24px;">
+        <div class="stat-card green">
+          <div class="stat-label">Wallet Balance</div>
+          <div class="stat-value" id="statWalletBalance">₹0</div>
+          <div class="stat-sub">Available for payout</div>
+        </div>
+        <div class="stat-card gold">
+          <div class="stat-label">Total Earned</div>
+          <div class="stat-value" id="statTotalEarned">₹0</div>
+          <div class="stat-sub">From device sales</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Direct Referrals (Level 1)</div>
+          <div class="stat-value" id="statDirectCount">0</div>
+          <div class="stat-sub">Your personal directs</div>
+        </div>
+        <div class="stat-card purple">
+          <div class="stat-label">Total Downline Team</div>
+          <div class="stat-value" id="statTeamCount">0</div>
+          <div class="stat-sub">Across all 100 levels</div>
+        </div>
+      </div>
+
+      <!-- Dashboard Tabs -->
+      <div class="card">
+        <div class="tabs-nav">
+          <button class="tab-btn active" data-tab="tabLevelSummary">100-Level Breakdown</button>
+          <button class="tab-btn" data-tab="tabDownlineList">Downline Members Directory</button>
+          <button class="tab-btn" data-tab="tabVisualTree">Interactive Genealogy Tree</button>
+          <button class="tab-btn" data-tab="tabDeviceStore">Device Store & Sales</button>
+          <button class="tab-btn" data-tab="tabMyCommissions">Commissions Ledger</button>
+          <button class="tab-btn" data-tab="tabMyWithdrawals">Payout History</button>
+        </div>
+
+        <!-- TAB 1: 100-Level Table -->
+        <div id="tabLevelSummary" class="tab-pane active">
+          <div class="card-header">
+            <h3 class="card-title">100-Level Team Analytics</h3>
+            <span class="badge badge-blue">Max Depth: 100 Levels</span>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Level Hierarchy</th>
+                  <th>Total Members</th>
+                  <th>Active (Paid)</th>
+                  <th>Pending Payment</th>
+                </tr>
+              </thead>
+              <tbody id="levelTableBody">
+                <!-- Dynamically generated rows -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 2: Downline Members List -->
+        <div id="tabDownlineList" class="tab-pane">
+          <div class="card-header">
+            <h3 class="card-title">Downline Members Directory</h3>
+            <div style="display: flex; gap: 8px;">
+              <select id="levelFilterSelect" class="form-control" style="width: auto;" onchange="App.loadDownlineList(this.value)">
+                <option value="">All Levels</option>
+                <option value="1">Level 1 (Directs)</option>
+                <option value="2">Level 2</option>
+                <option value="3">Level 3</option>
+                <option value="4">Level 4</option>
+                <option value="5">Level 5</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Level</th>
+                  <th>Name</th>
+                  <th>Member ID</th>
+                  <th>Referred By</th>
+                  <th>Location</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="downlineTableBody">
+                <!-- Populated via API -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 3: Visual Tree -->
+        <div id="tabVisualTree" class="tab-pane">
+          <div class="card-header">
+            <h3 class="card-title">Genealogy Tree Structure</h3>
+            <button class="btn btn-sm btn-secondary" onclick="App.loadTree()">Reset to My Root</button>
+          </div>
+          <div id="treeContainer" class="tree-container tree">
+            <!-- Rendered by TreeViewer -->
+          </div>
+        </div>
+
+        <!-- TAB 4: Device Store & Orders -->
+        <div id="tabDeviceStore" class="tab-pane">
+          <div class="card-header">
+            <h3 class="card-title">Available Devices & Sales Entry</h3>
+            <button class="btn btn-sm btn-primary" onclick="App.openOrderModal()">+ Record Device Sale</button>
+          </div>
+          <div id="memberDeviceCards" class="grid grid-2" style="margin-bottom: 24px;">
+            <!-- Device cards loaded dynamically -->
+          </div>
+
+          <h4 style="font-size: 16px; font-weight: 700; margin: 20px 0 10px;">My Recorded Customer Sales</h4>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Order #</th>
+                  <th>Device</th>
+                  <th>Amount</th>
+                  <th>Customer</th>
+                  <th>Payment UTR</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="myOrdersTableBody">
+                <!-- Orders populated via API -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 5: Commissions Ledger -->
+        <div id="tabMyCommissions" class="tab-pane">
+          <div class="card-header">
+            <h3 class="card-title">Commissions Received Ledger</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Level</th>
+                  <th>Commission</th>
+                  <th>From Downline Member</th>
+                  <th>Device Product</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="myCommissionsTableBody">
+                <!-- Populated via API -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 6: Payout History -->
+        <div id="tabMyWithdrawals" class="tab-pane">
+          <div class="card-header">
+            <h3 class="card-title">Wallet Payout Requests</h3>
+            <button class="btn btn-sm btn-primary" onclick="App.openWithdrawModal()">Request Withdrawal</button>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Request Date</th>
+                  <th>Amount</th>
+                  <th>Payout Account Details</th>
+                  <th>Bank / UPI UTR</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="myWithdrawalsTableBody">
+                <!-- Populated via API -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= VIEW: ADMIN DASHBOARD ================= -->
+    <section id="view-admin" class="view-section">
+      <div class="card" style="background: var(--navy); color: white;">
+        <h1 style="font-size: 24px; font-weight: 800;">Administrator Control Center</h1>
+        <p style="color: #94a3b8; font-size: 13px;">Manage members, joining verifications, device sales, 100-level commission slabs, and payouts.</p>
+      </div>
+
+      <!-- Admin Stats Grid -->
+      <div class="grid grid-3" style="margin-bottom: 24px;">
+        <div class="stat-card">
+          <div class="stat-label">Total Network Members</div>
+          <div class="stat-value" id="adminStatMembers">0</div>
+          <div class="stat-sub"><span id="adminStatActive">0</span> Active Members</div>
+        </div>
+        <div class="stat-card gold">
+          <div class="stat-label">Pending Joining Approvals</div>
+          <div class="stat-value" id="adminStatPendingJoin">0</div>
+          <div class="stat-sub">₹1,999 fee submissions</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-label">Device Sales Revenue</div>
+          <div class="stat-value" id="adminStatDeviceRevenue">₹0</div>
+          <div class="stat-sub">From approved orders</div>
+        </div>
+        <div class="stat-card purple">
+          <div class="stat-label">Total Commissions Disbursed</div>
+          <div class="stat-value" id="adminStatCommissions">₹0</div>
+          <div class="stat-sub">Distributed across 100 levels</div>
+        </div>
+        <div class="stat-card gold">
+          <div class="stat-label">Pending Payout Requests</div>
+          <div class="stat-value" id="adminStatPendingWithdraw">0</div>
+          <div class="stat-sub">Member withdrawal requests</div>
+        </div>
+      </div>
+
+      <!-- Admin Management Tabs -->
+      <div class="card">
+        <div class="tabs-nav">
+          <button class="tab-btn active" data-tab="adminTabApprovals">Joining Approvals (<span class="display-joining-fee">₹1,999</span>)</button>
+          <button class="tab-btn" data-tab="adminTabOrders">Device Sales & 100-Level Commissions</button>
+          <button class="tab-btn" data-tab="adminTabDevices">Devices & Commission Slabs</button>
+          <button class="tab-btn" data-tab="adminTabMembers">Members Directory</button>
+          <button class="tab-btn" data-tab="adminTabPayouts">Withdrawals / Payouts</button>
+          <button class="tab-btn" data-tab="adminTabSettings">System Settings</button>
+          <button class="tab-btn" data-tab="adminTabExport">Export Data (CSV)</button>
+        </div>
+
+        <!-- ADMIN TAB 1: Joining Approvals -->
+        <div id="adminTabApprovals" class="tab-pane active">
+          <div class="card-header">
+            <h3 class="card-title">Pending Membership Joining Fee Verifications</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Member</th>
+                  <th>Member ID</th>
+                  <th>Mobile</th>
+                  <th>Sponsor</th>
+                  <th>Payment UTR</th>
+                  <th>Receipt</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="adminPendingPaymentsTable">
+                <!-- Populated via API -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ADMIN TAB 2: Device Orders Approval & Commission Dispatch -->
+        <div id="adminTabOrders" class="tab-pane">
+          <div class="card-header">
+            <h3 class="card-title">Device Sales Orders & 100-Level Auto-Disbursement</h3>
+          </div>
+          <div class="alert alert-info">
+            ⚡ <b>Automatic 100-Level Calculation:</b> When you approve a device order, the system instantly traces up to 100 upline ancestors of the seller and credits their wallets based on the device commission slab!
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Order #</th>
+                  <th>Seller</th>
+                  <th>Device</th>
+                  <th>Total Amount</th>
+                  <th>Customer Info</th>
+                  <th>UTR</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="adminOrdersTable">
+                <!-- Populated via API -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ADMIN TAB 3: Devices & Slabs -->
+        <div id="adminTabDevices" class="tab-pane">
+          <div class="card-header">
+            <h3 class="card-title">Device Products & Commission Slabs</h3>
+            <button class="btn btn-sm btn-primary" onclick="App.openAddDeviceModal()">+ Add New Device Product</button>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Device Name</th>
+                  <th>SKU</th>
+                  <th>Price</th>
+                  <th>Commission Slab Summary</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="adminDevicesTable">
+                <!-- Populated via API -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ADMIN TAB 4: Members Directory -->
+        <div id="adminTabMembers" class="tab-pane">
+          <div class="card-header">
+            <h3 class="card-title">All Registered Members</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Member ID</th>
+                  <th>Contact</th>
+                  <th>Sponsor</th>
+                  <th>Upline Depth</th>
+                  <th>Wallet Balance</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="adminMembersTable">
+                <!-- Populated via API -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ADMIN TAB 5: Payouts -->
+        <div id="adminTabPayouts" class="tab-pane">
+          <div class="card-header">
+            <h3 class="card-title">Member Withdrawal Requests</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Member</th>
+                  <th>Requested Amount</th>
+                  <th>Bank / UPI Details</th>
+                  <th>Transaction Reference</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="adminWithdrawalsTable">
+                <!-- Populated via API -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ADMIN TAB 6: Settings -->
+        <div id="adminTabSettings" class="tab-pane">
+          <div class="card-header">
+            <h3 class="card-title">Platform & Payment Settings</h3>
+          </div>
+          <form id="adminSettingsForm" onsubmit="App.handleSettingsSubmit(event)" style="max-width: 600px;">
+            <div class="form-group">
+              <label class="form-label">Platform / Company Name</label>
+              <input type="text" name="companyName" class="form-control" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Membership Joining Fee (INR)</label>
+              <input type="number" name="joiningFee" class="form-control" required min="1" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Admin UPI ID (for receiving joining & device payments)</label>
+              <input type="text" name="upiId" class="form-control" placeholder="merchant@upi" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Custom QR Code Image URL (Optional)</label>
+              <input type="text" name="qrUrl" class="form-control" placeholder="Leave empty for auto-generated UPI QR" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Bank Account Details (Displayed on Payment Screen)</label>
+              <textarea name="bankDetails" rows="4" class="form-control"></textarea>
+            </div>
+            <div class="grid grid-2">
+              <div class="form-group">
+                <label class="form-label">Support Mobile</label>
+                <input type="text" name="supportMobile" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Support Email</label>
+                <input type="email" name="supportEmail" class="form-control" />
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Settings</button>
+          </form>
+        </div>
+
+        <!-- ADMIN TAB 7: CSV Exports -->
+        <div id="adminTabExport" class="tab-pane">
+          <div class="card-header">
+            <h3 class="card-title">Export Platform Data to CSV</h3>
+          </div>
+          <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">
+            Download complete records for accounting, merchant reconciliation, and offline auditing.
+          </p>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <button class="btn btn-secondary" onclick="App.downloadCsv('members')">📥 Export Members List (CSV)</button>
+            <button class="btn btn-secondary" onclick="App.downloadCsv('orders')">📥 Export Device Orders (CSV)</button>
+            <button class="btn btn-secondary" onclick="App.downloadCsv('commissions')">📥 Export 100-Level Commissions Ledger (CSV)</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= MODALS ================= -->
+
+  <!-- Modal 1: Record Device Sale -->
+  <div id="deviceOrderModal" class="modal-overlay">
+    <div class="modal-box">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <h3 style="font-size: 18px; font-weight: 800;">Record Customer Device Sale</h3>
+        <button class="btn btn-sm btn-secondary" onclick="App.closeOrderModal()">✕</button>
+      </div>
+      <form onsubmit="App.handleDeviceOrderSubmit(event)">
+        <div class="form-group">
+          <label class="form-label">Select Device Product *</label>
+          <select id="orderDeviceSelect" name="deviceId" class="form-control" required>
+            <!-- Populated from devices -->
+          </select>
+        </div>
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label class="form-label">Customer Name *</label>
+            <input type="text" name="customerName" class="form-control" required placeholder="Buyer name" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Customer Mobile *</label>
+            <input type="tel" name="customerMobile" class="form-control" required placeholder="10-digit mobile" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Customer Delivery Address *</label>
+          <textarea name="customerAddress" rows="2" class="form-control" required placeholder="Full shipping address with pincode"></textarea>
+        </div>
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label class="form-label">Quantity</label>
+            <input type="number" name="quantity" class="form-control" value="1" min="1" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Payment UTR / Reference</label>
+            <input type="text" name="utr" class="form-control" placeholder="UPI Reference Number" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Payment Screenshot</label>
+          <input type="file" name="receipt" class="form-control" accept="image/*" />
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 11px;">
+          Submit Customer Sale Order
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 2: Add Device Product & Slabs -->
+  <div id="addDeviceModal" class="modal-overlay">
+    <div class="modal-box" style="max-width: 680px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <h3 style="font-size: 18px; font-weight: 800;">Add Device & 100-Level Commission Slab</h3>
+        <button class="btn btn-sm btn-secondary" onclick="App.closeAddDeviceModal()">✕</button>
+      </div>
+      <form onsubmit="App.handleAddDeviceSubmit(event)">
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label class="form-label">Device Product Name *</label>
+            <input type="text" name="name" class="form-control" required placeholder="e.g. Smart Energy Optimizer" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">SKU Code</label>
+            <input type="text" name="sku" class="form-control" placeholder="e.g. SEO-100" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Retail Selling Price (INR) *</label>
+          <input type="number" name="price" class="form-control" required min="1" placeholder="e.g. 9999" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <input type="text" name="description" class="form-control" placeholder="Brief product features" />
+        </div>
+
+        <div style="margin: 16px 0 10px; font-weight: 700; font-size: 14px; border-bottom: 1px solid var(--border); padding-bottom: 6px;">
+          100-Level Commission Slab Rules (INR per device sold):
+        </div>
+        <div class="grid grid-3">
+          <div class="form-group">
+            <label class="form-label">Level 1 (Direct Sponsor)</label>
+            <input type="number" name="commL1" class="form-control" value="800" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Level 2</label>
+            <input type="number" name="commL2" class="form-control" value="400" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Level 3</label>
+            <input type="number" name="commL3" class="form-control" value="200" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Level 4</label>
+            <input type="number" name="commL4" class="form-control" value="100" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Level 5</label>
+            <input type="number" name="commL5" class="form-control" value="80" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Levels 6 to 10 (each)</label>
+            <input type="number" name="commL6_10" class="form-control" value="40" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Levels 11 to 20 (each)</label>
+            <input type="number" name="commL11_20" class="form-control" value="20" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Levels 21 to 50 (each)</label>
+            <input type="number" name="commL21_50" class="form-control" value="10" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Levels 51 to 100 (each)</label>
+            <input type="number" name="commL51_100" class="form-control" value="5" required />
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 11px; margin-top: 10px;">
+          Save Device & Commission Slabs
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 3: Request Payout -->
+  <div id="withdrawModal" class="modal-overlay">
+    <div class="modal-box">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <h3 style="font-size: 18px; font-weight: 800;">Request Wallet Payout</h3>
+        <button class="btn btn-sm btn-secondary" onclick="App.closeWithdrawModal()">✕</button>
+      </div>
+      <div class="alert alert-info" style="margin-bottom: 16px;">
+        Current Wallet Balance: <b id="modalWalletBalance">₹0</b>
+      </div>
+      <form onsubmit="App.handleWithdrawSubmit(event)">
+        <div class="form-group">
+          <label class="form-label">Withdrawal Amount (Min ₹100) *</label>
+          <input type="number" name="amount" class="form-control" min="100" required placeholder="Amount in INR" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Bank Account / UPI Details *</label>
+          <textarea name="accountDetails" rows="3" class="form-control" required placeholder="Enter UPI ID (e.g. name@okhdfcbank) OR Bank Name, A/C Number, IFSC Code"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success" style="width: 100%; padding: 11px;">
+          Submit Payout Request
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer"></div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="container" style="margin: 0 auto;">
+      RegisterPro MLM Network Platform · Production-Ready Node.js Server Application · 100-Level Downline & Device Sales Slabs
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/api.js"></script>
+  <script src="/js/tree.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

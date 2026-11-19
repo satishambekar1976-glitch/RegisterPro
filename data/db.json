@@ -1,0 +1,97 @@
+{
+  "settings": {
+    "companyName": "RegisterPro MLM Network",
+    "joiningFee": 1999,
+    "upiId": "merchant@upi",
+    "qrUrl": "",
+    "bankDetails": "Bank: State Bank of India\nA/C: 1234567890\nIFSC: SBIN0001234\nHolder: RegisterPro Enterprises",
+    "maxLevels": 100,
+    "supportMobile": "+91 9876543210",
+    "supportEmail": "support@registerpro.com"
+  },
+  "users": [
+    {
+      "id": "ADMIN-001",
+      "memberId": "ADMIN",
+      "name": "Super Admin",
+      "email": "admin@registerpro.demo",
+      "mobile": "9999999999",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "passwordHash": "a82df6d43f114138a44b53ef114b39dc:bfd30cf848a6058bb091991d374431f413da6dfa0cb3989c4ad3e20e89547cb0ce4aa7f1d44eb60df496d66e7465352c6f1faae7eb04ecfcbf71c53e80cba0a0",
+      "role": "admin",
+      "sponsorId": null,
+      "uplineChain": [],
+      "refCode": "ADMINREF",
+      "status": "active",
+      "paymentStatus": "approved",
+      "feeSnapshot": 0,
+      "utr": "SYSTEM_APPROVED",
+      "walletBalance": 0,
+      "totalEarned": 0,
+      "totalWithdrawn": 0,
+      "createdAt": "2026-11-19T18:00:00.000Z"
+    }
+  ],
+  "devices": [
+    {
+      "id": "DEV-001",
+      "name": "Smart Energy Saver Device (Model A)",
+      "sku": "ESD-A1",
+      "price": 9999,
+      "description": "Advanced power factor optimization device for homes and businesses. High demand consumer gadget.",
+      "status": "active",
+      "createdAt": "2026-11-19T18:00:00.000Z",
+      "slabs": [
+        {
+          "id": "SLAB-1",
+          "name": "100-Level Energy Saver Commission Slab",
+          "minPrice": 5000,
+          "maxPrice": 20000,
+          "levels": {
+            "1": 800,
+            "2": 400,
+            "3": 200,
+            "4": 100,
+            "5": 80,
+            "6-10": 40,
+            "11-20": 20,
+            "21-50": 10,
+            "51-100": 5
+          }
+        }
+      ]
+    },
+    {
+      "id": "DEV-002",
+      "name": "Smart IoT Home Automation Controller",
+      "sku": "IOT-H1",
+      "price": 14999,
+      "description": "WiFi & Zigbee central hub for automated energy and appliance management.",
+      "status": "active",
+      "createdAt": "2026-11-19T18:00:00.000Z",
+      "slabs": [
+        {
+          "id": "SLAB-2",
+          "name": "100-Level IoT Controller Commission Slab",
+          "minPrice": 10000,
+          "maxPrice": 30000,
+          "levels": {
+            "1": 1500,
+            "2": 700,
+            "3": 350,
+            "4": 200,
+            "5": 120,
+            "6-10": 60,
+            "11-20": 30,
+            "21-50": 15,
+            "51-100": 8
+          }
+        }
+      ]
+    }
+  ],
+  "orders": [],
+  "commissions": [],
+  "withdrawals": []
+}

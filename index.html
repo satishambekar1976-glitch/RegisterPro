@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RegisterPro — Registration & Referral</title>
+<style>
+:root{--navy:#15243a;--blue:#315efb;--bg:#f4f7fb;--muted:#667085;--line:#e5eaf2;--green:#168653;--orange:#b76e00}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:#172033}
+button,input,select{font:inherit}button{cursor:pointer;border:0;border-radius:10px;padding:11px 15px;font-weight:650;background:var(--blue);color:white}button.secondary{background:#edf1ff;color:#294bd1}button.danger{background:#fff0f0;color:#b42318}
+.top{background:var(--navy);color:white;padding:17px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-weight:800;font-size:20px;letter-spacing:.2px}.brand span{color:#91aaff}.top small{color:#c5cee0}
+.wrap{max-width:1120px;margin:26px auto;padding:0 18px}.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}.nav button{background:white;color:#344054;border:1px solid var(--line)}.nav button.active{background:var(--blue);color:white;border-color:var(--blue)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.card{background:white;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 5px 20px #17203308}.span12{grid-column:span 12}.span8{grid-column:span 8}.span6{grid-column:span 6}.span4{grid-column:span 4}
+h1{font-size:26px;margin:0 0 7px}h2{font-size:18px;margin:0 0 15px}p{color:var(--muted);line-height:1.5}.muted{color:var(--muted);font-size:13px}.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.between{justify-content:space-between}
+label{display:block;font-size:13px;font-weight:650;margin:12px 0 6px}input,select{width:100%;padding:12px;border:1px solid #d8deea;border-radius:10px;background:white;outline:none}input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #315efb16}.field{min-width:0}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px}.full{grid-column:1/-1}
+.stat{font-size:27px;font-weight:800;margin-top:5px}.statlabel{font-size:13px;color:var(--muted)}.pill{display:inline-block;padding:5px 9px;border-radius:99px;font-size:12px;font-weight:700;background:#eef2ff;color:#304cc3}.pill.green{background:#e9f8ef;color:#147a45}.pill.orange{background:#fff4df;color:#9a5b00}.pill.red{background:#ffeded;color:#b42318}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:11px 9px;border-bottom:1px solid var(--line)}th{color:#667085;font-weight:700;background:#fafbfe}
+.tree ul{list-style:none;margin:8px 0 8px 18px;padding-left:17px;border-left:2px solid #dbe3f4}.tree li{margin:10px 0;position:relative}.tree li:before{content:"";position:absolute;left:-17px;top:14px;width:13px;border-top:2px solid #dbe3f4}.node{display:inline-flex;align-items:center;gap:8px;background:#f8faff;border:1px solid #e2e9fb;border-radius:10px;padding:8px 11px}.node b{font-size:13px}.node small{color:var(--muted)}
+.qrbox{border:1px dashed #cbd5e1;background:#fafcff;border-radius:14px;padding:20px;text-align:center}.qr{width:170px;height:170px;object-fit:contain;background:white;border:1px solid var(--line);border-radius:8px;padding:8px}
+.notice{padding:12px 14px;background:#fff8e8;color:#805400;border:1px solid #f3dfb2;border-radius:10px;font-size:13px;line-height:1.5}.success{background:#ecfdf3;color:#12643a;border-color:#b7ebc9}.hidden{display:none!important}.actions{display:flex;gap:8px;flex-wrap:wrap}.empty{padding:22px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px}
+footer{text-align:center;color:#8a94a6;font-size:12px;padding:30px}
+@media(max-width:760px){.span8,.span6,.span4{grid-column:span 12}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}.top{padding:15px}.wrap{margin:18px auto}.card{padding:16px}h1{font-size:22px}}
+</style>
+</head>
+<body>
+<header class="top"><div><div class="brand">Register<span>Pro</span></div><small>Registration · UPI payment · Referral network</small></div><div class="row"><span id="topUser" class="muted" style="color:#dbe3f4">Guest</span><button id="logoutBtn" class="secondary hidden">Logout</button></div></header>
+<main class="wrap">
+  <div class="nav" id="nav">
+    <button data-view="home" class="active">Home</button>
+    <button data-view="register">Register</button>
+    <button data-view="login">Login</button>
+    <button data-view="dashboard" class="hidden" id="memberNav">My Dashboard</button>
+    <button data-view="admin" class="hidden" id="adminNav">Admin</button>
+  </div>
+
+  <section id="home" class="view">
+    <div class="grid">
+      <div class="card span8">
+        <span class="pill">Online registration platform</span>
+        <h1 style="margin-top:14px">Register once. Share your referral link. Grow your network.</h1>
+        <p>Register with your details, complete the payment process, and get a personal referral link after your account is approved.</p>
+        <div class="actions"><button onclick="showView('register')">Create account</button><button class="secondary" onclick="showView('login')">Member login</button></div>
+      </div>
+      <div class="card span4"><div class="muted">Current registration fee</div><div class="stat" id="homeFee">₹999</div><p class="muted">Fee is controlled by the administrator.</p></div>
+      <div class="card span12">
+        <h2>How it works</h2>
+        <div class="grid">
+          <div class="span4"><b>1. Register</b><p class="muted">Enter your name, email and contact details. Referral name is filled from the referral link.</p></div>
+          <div class="span4"><b>2. Pay</b><p class="muted">Scan the configured UPI QR and submit the UTR/reference for reconciliation.</p></div>
+          <div class="span4"><b>3. Get your link</b><p class="muted">After verified payment approval, your account gets its own referral link.</p></div>
+        </div>
+      </div>
+      <div class="card span12 notice">Demo build: this version stores data in this browser only. It does not collect real payments, send emails, or synchronize with Google Sheets. Live payment verification requires a merchant gateway account and secure backend integration.</div>
+    </div>
+  </section>
+
+  <section id="register" class="view hidden">
+    <div class="card">
+      <h1>Create your account</h1><p>Complete the form below. Fields marked * are required.</p>
+      <div id="refNotice" class="notice hidden"></div>
+      <form id="registerForm" class="formgrid">
+        <div class="field"><label>Full name *</label><input name="name" required maxlength="80" placeholder="Your full name"></div>
+        <div class="field"><label>Email address *</label><input name="email" type="email" required placeholder="name@example.com"></div>
+        <div class="field"><label>Mobile number *</label><input name="mobile" required inputmode="numeric" pattern="[0-9+ -]{10,16}" placeholder="10-digit mobile"></div>
+        <div class="field"><label>City</label><input name="city" placeholder="City"></div>
+        <div class="field"><label>State</label><input name="state" placeholder="State"></div>
+        <div class="field"><label>Password *</label><input name="password" type="password" minlength="6" required placeholder="At least 6 characters"></div>
+        <div class="field full"><label>Referral code (optional)</label><input name="referralCode" id="referralCode" placeholder="Auto-filled when you open a referral link"></div>
+        <div class="field full"><label>Referrer name</label><input id="referrerName" disabled placeholder="No referral selected"></div>
+        <div class="field full"><button type="submit">Continue to payment</button></div>
+      </form>
+    </div>
+  </section>
+
+  <section id="login" class="view hidden">
+    <div class="card" style="max-width:520px;margin:auto">
+      <h1>Member login</h1><p>Sign in using your registered email and password.</p>
+      <form id="loginForm">
+        <label>Email</label><input name="email" type="email" required>
+        <label>Password</label><input name="password" type="password" required>
+        <div style="margin-top:16px"><button type="submit">Login</button></div>
+      </form>
+      <p class="muted">Demo admin: admin@registerpro.demo / Admin123!</p>
+    </div>
+  </section>
+
+  <section id="payment" class="view hidden">
+    <div class="card">
+      <h1>Complete your registration payment</h1><p id="paymentFor" class="muted"></p>
+      <div class="grid">
+        <div class="span6">
+          <div class="qrbox">
+            <div class="muted">Scan this UPI QR code</div>
+            <img id="qrImage" class="qr" alt="UPI QR placeholder" src="https://placehold.co/220x220/png?text=Admin+QR+Not+Set">
+            <div class="stat" id="paymentFee">₹999</div>
+            <div class="muted" id="upiLabel">UPI ID not configured</div>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="notice">After paying, enter your UPI transaction reference (UTR). Your registration remains pending until the payment is verified. This demo does not verify transactions with a bank or gateway.</div>
+          <form id="paymentForm">
+            <label>UPI transaction reference / UTR *</label><input name="utr" required minlength="8" maxlength="40" placeholder="Enter UTR / reference number">
+            <label>Payment screenshot (optional)</label><input name="receipt" type="file" accept="image/png,image/jpeg,image/webp">
+            <div style="margin-top:16px"><button type="submit">Submit payment details</button></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="dashboard" class="view hidden">
+    <div class="row between"><div><h1 id="welcome">My Dashboard</h1><p class="muted">Your membership and complete downline network.</p></div><span id="memberStatus" class="pill orange">Payment pending</span></div>
+    <div class="grid" style="margin-top:14px">
+      <div class="card span4"><div class="statlabel">Member ID</div><div id="memberId" class="stat" style="font-size:20px">—</div></div>
+      <div class="card span4"><div class="statlabel">Total network members</div><div id="networkCount" class="stat">0</div></div>
+      <div class="card span4"><div class="statlabel">Paid network members</div><div id="paidCount" class="stat">0</div></div>
+      <div class="card span8">
+        <h2>My referral link</h2><input id="myLink" readonly><div class="actions" style="margin-top:10px"><button class="secondary" id="copyLink">Copy link</button><button class="secondary" id="shareLink">Share on WhatsApp</button></div>
+      </div>
+      <div class="card span4"><h2>Level summary</h2><div id="levelSummary" class="muted">No network yet.</div></div>
+      <div class="card span12"><div class="row between"><h2>My complete referral network</h2><span class="pill">All levels</span></div><div id="tree" class="tree"></div></div>
+      <div class="card span12"><h2>Network member list</h2><div style="overflow:auto"><table><thead><tr><th>Level</th><th>Name</th><th>Member ID</th><th>Referred by</th><th>Payment</th></tr></thead><tbody id="networkTable"></tbody></table></div></div>
+    </div>
+  </section>
+
+  <section id="admin" class="view hidden">
+    <h1>Admin dashboard</h1><p class="muted">Manage demo settings and review submitted payment references.</p>
+    <div class="grid">
+      <div class="card span4"><div class="statlabel">Registrations</div><div id="adminRegistrations" class="stat">0</div></div>
+      <div class="card span4"><div class="statlabel">Verified members</div><div id="adminPaid" class="stat">0</div></div>
+      <div class="card span4"><div class="statlabel">Pending payments</div><div id="adminPending" class="stat">0</div></div>
+      <div class="card span6">
+        <h2>Registration settings</h2>
+        <form id="settingsForm"><label>Registration fee (INR)</label><input name="fee" type="number" min="1" required><label>UPI ID (display only)</label><input name="upi" placeholder="merchant@upi"><label>QR image URL</label><input name="qr" placeholder="https://... or leave blank"><button style="margin-top:14px">Save settings</button></form>
+      </div>
+      <div class="card span6"><h2>Payment review</h2><div class="notice">Demo only: clicking Verify is an administrator simulation, not a real gateway verification. Do not use this demo for live payments.</div><div id="paymentQueue" style="margin-top:12px"></div></div>
+      <div class="card span12"><div class="row between"><h2>All registrations</h2><button class="secondary" id="exportCsv">Export CSV</button></div><div style="overflow:auto"><table><thead><tr><th>Name</th><th>Email</th><th>Member ID</th><th>Sponsor</th><th>UTR</th><th>Status</th></tr></thead><tbody id="adminTable"></tbody></table></div></div>
+    </div>
+  </section>
+</main>
+<footer>RegisterPro demo · Local browser prototype · Not connected to live payment services</footer>
+<script>
+const KEY='registerpro_demo_v1';
+const defaults={fee:999,upi:'',qr:'',users:[],current:null};
+let state=load();
+function load(){try{return {...defaults,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){return {...defaults}}}
+function save(){localStorage.setItem(KEY,JSON.stringify(state));}
+function id(prefix){return prefix+Date.now().toString(36).toUpperCase()+Math.random().toString(36).slice(2,5).toUpperCase()}
+function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function showView(v){document.querySelectorAll('.view').forEach(x=>x.classList.add('hidden'));document.getElementById(v).classList.remove('hidden');document.querySelectorAll('.nav button[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));if(v==='dashboard')renderDashboard();if(v==='admin')renderAdmin();window.scrollTo(0,0)}
+document.querySelectorAll('.nav button[data-view]').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.view)));
+function current(){return state.users.find(u=>u.id===state.current)}
+function refreshHeader(){let u=current();document.getElementById('topUser').textContent=u?u.name+' · '+u.email:'Guest';document.getElementById('logoutBtn').classList.toggle('hidden',!u);document.getElementById('memberNav').classList.toggle('hidden',!u);document.getElementById('adminNav').classList.toggle('hidden',!(u&&u.role==='admin'))}
+document.getElementById('logoutBtn').onclick=()=>{state.current=null;save();refreshHeader();showView('home')};
+function findByCode(code){return state.users.find(u=>u.refCode===code&&u.status==='active')}
+function applyReferral(){let code=new URLSearchParams(location.search).get('ref')||'';let input=document.getElementById('referralCode');if(code)input.value=code;let ref=findByCode(input.value.trim());let box=document.getElementById('refNotice'),name=document.getElementById('referrerName');if(ref){name.value=ref.name;box.textContent='You are registering through '+ref.name+'’s referral link.';box.classList.remove('hidden')}else{name.value='';box.classList.add('hidden')}}
+document.getElementById('referralCode').addEventListener('input',applyReferral);
+document.getElementById('registerForm').addEventListener('submit',e=>{e.preventDefault();let f=new FormData(e.target),email=String(f.get('email')).trim().toLowerCase();if(state.users.some(u=>u.email===email)){alert('This email is already registered. Please log in.');return}let code=String(f.get('referralCode')||'').trim(),sponsor=findByCode(code);if(code&&!sponsor){alert('Referral code is invalid or the referrer is not active.');return}let u={id:id('REG-'),memberId:id('MEM-'),name:String(f.get('name')).trim(),email,mobile:String(f.get('mobile')).trim(),city:String(f.get('city')||''),stateName:String(f.get('state')||''),password:String(f.get('password')),sponsorId:sponsor?sponsor.id:null,refCode:'',status:'pending',paymentStatus:'pending',feeSnapshot:Number(state.fee),utr:'',createdAt:new Date().toISOString(),role:'member'};state.users.push(u);state.current=u.id;save();e.target.reset();document.getElementById('paymentFor').textContent='Registration for '+u.name+' · '+u.memberId;document.getElementById('paymentFee').textContent='₹'+u.feeSnapshot;document.getElementById('qrImage').src=state.qr||'https://placehold.co/220x220/png?text=Admin+QR+Not+Set';document.getElementById('upiLabel').textContent=state.upi||'UPI ID not configured';refreshHeader();showView('payment')});
+document.getElementById('paymentForm').addEventListener('submit',e=>{e.preventDefault();let u=current();if(!u)return;let f=new FormData(e.target);u.utr=String(f.get('utr')).trim();u.paymentStatus='submitted';u.receiptName=f.get('receipt')?.name||'';save();alert('Payment details submitted. Your account is pending verification by the administrator.');refreshHeader();showView('dashboard')});
+document.getElementById('loginForm').addEventListener('submit',e=>{e.preventDefault();let f=new FormData(e.target),email=String(f.get('email')).trim().toLowerCase(),pw=String(f.get('password'));let u=state.users.find(x=>x.email===email&&x.password===pw);if(!u){alert('Invalid email or password.');return}state.current=u.id;save();refreshHeader();showView(u.role==='admin'?'admin':'dashboard')});
+function descendants(root){let out=[];function walk(parent,level){state.users.filter(x=>x.sponsorId===parent.id).forEach(x=>{out.push({...x,level});walk(x,level+1)})}walk(root,1);return out}
+function buildTree(parent){let kids=state.users.filter(x=>x.sponsorId===parent.id);if(!kids.length)return '';return '<ul>'+kids.map(k=>'<li><span class="node"><b>'+esc(k.name)+'</b><small> · L'+(depthFrom(parent,k))+' · '+(k.paymentStatus==='success'?'Paid':'Pending')+'</small></span>'+buildTree(k)+'</li>').join('')+'</ul>'}
+function depthFrom(parent,child){let n=1,p=child;while(p.sponsorId&&p.sponsorId!==parent.id){p=state.users.find(x=>x.id===p.sponsorId);if(!p)break;n++}return n}
+function renderDashboard(){let u=current();if(!u)return;document.getElementById('welcome').textContent='Welcome, '+u.name;document.getElementById('memberId').textContent=u.memberId;let status=document.getElementById('memberStatus');status.textContent=u.status==='active'?'Active member':(u.paymentStatus==='submitted'?'Payment submitted':'Payment pending');status.className='pill '+(u.status==='active'?'green':'orange');let link=u.refCode?location.origin+location.pathname+'?ref='+encodeURIComponent(u.refCode):'Your referral link will be available after payment verification.';document.getElementById('myLink').value=link;let ds=u.status==='active'?descendants(u):[];document.getElementById('networkCount').textContent=ds.length;document.getElementById('paidCount').textContent=ds.filter(x=>x.status==='active').length;let levels={};ds.forEach(x=>levels[x.level]=(levels[x.level]||0)+1);document.getElementById('levelSummary').innerHTML=Object.keys(levels).length?Object.keys(levels).sort((a,b)=>a-b).map(l=>'Level '+l+': <b>'+levels[l]+'</b>').join('<br>'):'No network members yet.';document.getElementById('tree').innerHTML=u.status==='active'?'<div class="node"><b>'+esc(u.name)+' (You)</b><small> · Main member</small></div>'+buildTree(u):'<div class="notice">Your referral link and network will be activated after payment verification.</div>';document.getElementById('networkTable').innerHTML=ds.length?ds.map(x=>'<tr><td>'+x.level+'</td><td>'+esc(x.name)+'</td><td>'+esc(x.memberId)+'</td><td>'+esc((state.users.find(y=>y.id===x.sponsorId)||{}).name||'—')+'</td><td><span class="pill '+(x.status==='active'?'green':'orange')+'">'+(x.status==='active'?'Paid':'Pending')+'</span></td></tr>').join(''):'<tr><td colspan="5" class="empty">No referral members yet.</td></tr>'}
+document.getElementById('copyLink').onclick=()=>{let v=document.getElementById('myLink').value;navigator.clipboard?.writeText(v).then(()=>alert('Referral link copied.')).catch(()=>alert(v))};
+document.getElementById('shareLink').onclick=()=>{let v=document.getElementById('myLink').value;window.open('https://wa.me/?text='+encodeURIComponent('Join using my referral link: '+v),'_blank')};
+document.getElementById('settingsForm').addEventListener('submit',e=>{e.preventDefault();let f=new FormData(e.target);state.fee=Number(f.get('fee'));state.upi=String(f.get('upi')||'');state.qr=String(f.get('qr')||'');save();alert('Demo settings saved.');renderAdmin();document.getElementById('homeFee').textContent='₹'+state.fee});
+function renderAdmin(){let users=state.users.filter(u=>u.role!=='admin');document.getElementById('adminRegistrations').textContent=users.length;document.getElementById('adminPaid').textContent=users.filter(u=>u.status==='active').length;document.getElementById('adminPending').textContent=users.filter(u=>u.status!=='active').length;let sf=document.querySelector('#settingsForm [name=fee]');if(sf)sf.value=state.fee;document.querySelector('#settingsForm [name=upi]').value=state.upi||'';document.querySelector('#settingsForm [name=qr]').value=state.qr||'';let queue=users.filter(u=>u.paymentStatus==='submitted');document.getElementById('paymentQueue').innerHTML=queue.length?queue.map(u=>'<div class="card" style="padding:12px;margin-bottom:8px"><b>'+esc(u.name)+'</b><div class="muted">₹'+u.feeSnapshot+' · UTR: '+esc(u.utr)+'</div><button style="margin-top:8px" onclick="demoVerify(\''+u.id+'\')">Demo: mark verified</button></div>').join(''):'<div class="empty">No submitted payments.</div>';document.getElementById('adminTable').innerHTML=users.map(u=>'<tr><td>'+esc(u.name)+'</td><td>'+esc(u.email)+'</td><td>'+esc(u.memberId)+'</td><td>'+esc((state.users.find(x=>x.id===u.sponsorId)||{}).name||'—')+'</td><td>'+esc(u.utr||'—')+'</td><td>'+(u.status==='active'?'Paid':'Pending')+'</td></tr>').join('')||'<tr><td colspan="6">No registrations.</td></tr>'}
+window.demoVerify=function(uid){let u=state.users.find(x=>x.id===uid);if(!u)return;if(!confirm('Demo-only action: mark this member as paid and active? This does not verify a real bank transaction.'))return;u.status='active';u.paymentStatus='success';u.refCode='MEMBER'+u.memberId.replace(/[^A-Z0-9]/g,'').slice(-8);save();renderAdmin();alert('Demo member activated. Referral code: '+u.refCode)};
+document.getElementById('exportCsv').onclick=()=>{let rows=[['Name','Email','Member ID','Sponsor ID','UTR','Status'],...state.users.filter(u=>u.role!=='admin').map(u=>[u.name,u.email,u.memberId,u.sponsorId||'',u.utr||'',u.status])];let csv=rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='registrations-demo.csv';a.click();URL.revokeObjectURL(a.href)};
+function init(){if(!state.users.some(u=>u.role==='admin'))state.users.push({id:'ADMIN-1',memberId:'ADMIN-1',name:'Demo Admin',email:'admin@registerpro.demo',password:'Admin123!',role:'admin',status:'active',paymentStatus:'success',refCode:'ADMINREF',sponsorId:null});save();document.getElementById('homeFee').textContent='₹'+state.fee;applyReferral();refreshHeader();if(current())showView(current().role==='admin'?'admin':'dashboard')}
+init();
+</script>
+</body>
+</html>

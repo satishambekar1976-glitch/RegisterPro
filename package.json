@@ -1,0 +1,26 @@
+{
+  "name": "registerpro",
+  "version": "2.0.0",
+  "description": "RegisterPro — 100-Level MLM Referral & Device Sales Commission Web Application",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node server/server.js"
+  },
+  "keywords": [
+    "mlm",
+    "network-marketing",
+    "referral-tree",
+    "100-levels",
+    "device-sales",
+    "commission-slabs"
+  ],
+  "author": "RegisterPro",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1"
+  }
+}
