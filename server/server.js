@@ -111,7 +111,7 @@ app.get('/api/sponsor/:code', (req, res) => {
 // 3. Register Member
 app.post('/api/auth/register', (req, res) => {
   try {
-    const { name, email, mobile, city, state, password, referralCode } = req.body;
+    const { name, email, mobile, dob, pincode, address, city, state, password, referralCode } = req.body;
     if (!name || !email || !mobile || !password) {
       return res.status(400).json({ error: 'Name, email, mobile, and password are required' });
     }
@@ -137,8 +137,11 @@ app.post('/api/auth/register', (req, res) => {
       name,
       email,
       mobile,
-      city,
-      state,
+      dob: dob || '',
+      pincode: pincode || '',
+      address: address || '',
+      city: city || '',
+      state: state || '',
       password,
       sponsorId
     });
@@ -204,6 +207,9 @@ app.get('/api/auth/me', authMiddleware, (req, res) => {
     name: user.name,
     email: user.email,
     mobile: user.mobile,
+    dob: user.dob || '',
+    pincode: user.pincode || '',
+    address: user.address || '',
     city: user.city,
     state: user.state,
     role: user.role,
@@ -612,8 +618,8 @@ app.get('/api/admin/export/:type', authMiddleware, adminOnly, (req, res) => {
 
   if (type === 'members') {
     const users = db.getUsers().filter(u => u.role !== 'admin');
-    csv = 'MemberID,Name,Email,Mobile,City,State,SponsorID,Status,PaymentStatus,UTR,WalletBalance,TotalEarned,JoinedDate\n' +
-      users.map(u => `"${u.memberId}","${u.name}","${u.email}","${u.mobile}","${u.city}","${u.state}","${u.sponsorId || ''}","${u.status}","${u.paymentStatus}","${u.utr || ''}",${u.walletBalance || 0},${u.totalEarned || 0},"${u.createdAt}"`).join('\n');
+    csv = 'MemberID,Name,Email,Mobile,DOB,PINCode,Address,City,State,SponsorID,Status,PaymentStatus,UTR,WalletBalance,TotalEarned,JoinedDate\n' +
+      users.map(u => `"${u.memberId}","${u.name}","${u.email}","${u.mobile}","${u.dob || ''}","${u.pincode || ''}","${(u.address || '').replace(/"/g, '""')}","${u.city}","${u.state}","${u.sponsorId || ''}","${u.status}","${u.paymentStatus}","${u.utr || ''}",${u.walletBalance || 0},${u.totalEarned || 0},"${u.createdAt}"`).join('\n');
   } else if (type === 'orders') {
     const orders = db.getOrders();
     csv = 'OrderNumber,SellerID,DeviceName,Price,Quantity,TotalAmount,CustomerName,CustomerMobile,UTR,Status,Date\n' +
@@ -632,7 +638,7 @@ app.get('/api/admin/export/:type', authMiddleware, adminOnly, (req, res) => {
 });
 
 // Fallback to index.html for SPA frontend routing
-app.get('*', (req, res) => {
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
 

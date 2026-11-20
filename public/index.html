@@ -22,6 +22,7 @@
       <nav class="nav-links">
         <button class="btn btn-sm btn-outline nav-guest" data-nav="home">Home</button>
         <button class="btn btn-sm btn-outline nav-guest" data-nav="register">Register</button>
+        <button class="btn btn-sm btn-outline nav-guest" onclick="App.quickAdminLogin()">🔑 Admin Portal</button>
         <button class="btn btn-sm btn-primary nav-guest" data-nav="login">Sign In</button>
 
         <span id="topUserBadge" class="brand-badge" style="display: none;">User</span>
@@ -145,12 +146,28 @@
 
           <div class="grid grid-2">
             <div class="form-group">
-              <label class="form-label">City</label>
-              <input type="text" name="city" class="form-control" placeholder="Your City" />
+              <label class="form-label">Date of Birth *</label>
+              <input type="date" name="dob" class="form-control" required />
             </div>
             <div class="form-group">
-              <label class="form-label">State</label>
-              <input type="text" name="state" class="form-control" placeholder="Your State" />
+              <label class="form-label">PIN Code *</label>
+              <input type="text" name="pincode" pattern="[0-9]{6}" maxlength="6" class="form-control" required placeholder="6-digit PIN code" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Residential Address *</label>
+            <textarea name="address" rows="2" class="form-control" required placeholder="House / Flat No., Street, Area, Landmark"></textarea>
+          </div>
+
+          <div class="grid grid-2">
+            <div class="form-group">
+              <label class="form-label">City *</label>
+              <input type="text" name="city" class="form-control" required placeholder="Your City" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">State *</label>
+              <input type="text" name="state" class="form-control" required placeholder="Your State" />
             </div>
           </div>
 
@@ -190,6 +207,9 @@
           </div>
           <button type="submit" class="btn btn-primary" style="width: 100%; padding: 11px; margin-top: 10px;">
             Sign In
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="App.quickAdminLogin()" style="width: 100%; padding: 11px; margin-top: 8px;">
+            🔑 One-Click Admin Sign In
           </button>
         </form>
 
@@ -609,6 +629,8 @@
                   <th>Name</th>
                   <th>Member ID</th>
                   <th>Contact</th>
+                  <th>DOB</th>
+                  <th>Address & PIN</th>
                   <th>Sponsor</th>
                   <th>Upline Depth</th>
                   <th>Wallet Balance</th>

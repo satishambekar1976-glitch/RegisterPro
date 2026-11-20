@@ -213,6 +213,9 @@ const App = {
       name: form.name.value.trim(),
       email: form.email.value.trim(),
       mobile: form.mobile.value.trim(),
+      dob: form.dob ? form.dob.value : '',
+      pincode: form.pincode ? form.pincode.value.trim() : '',
+      address: form.address ? form.address.value.trim() : '',
       city: form.city.value.trim(),
       state: form.state.value.trim(),
       password: form.password.value,
@@ -263,6 +266,23 @@ const App = {
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = 'Sign In';
+    }
+  },
+
+  async quickAdminLogin() {
+    try {
+      showToast('Signing into Administrator Portal...', 'info');
+      const res = await API.login({
+        email: 'admin@registerpro.demo',
+        password: 'Admin123!'
+      });
+      API.setToken(res.token);
+      this.currentUser = res.user;
+      this.updateNav(res.user);
+      showToast('Admin logged in successfully', 'success');
+      this.navigateTo('admin');
+    } catch (err) {
+      showToast(err.message, 'danger');
     }
   },
 
@@ -720,7 +740,7 @@ const App = {
 
       tbody.innerHTML = pending.map(m => `
         <tr>
-          <td><b>${TreeViewer.esc(m.name)}</b><br><small>${m.email}</small></td>
+          <td><b>${TreeViewer.esc(m.name)}</b><br><small>${m.email}</small><br><small style="color:var(--text-muted);">${m.city || ''}, ${m.state || ''} ${m.pincode ? '(' + m.pincode + ')' : ''}</small></td>
           <td>${m.memberId}</td>
           <td>${m.mobile}</td>
           <td>${TreeViewer.esc(m.sponsorName)}</td>
@@ -921,6 +941,13 @@ const App = {
           <td><b>${TreeViewer.esc(m.name)}</b></td>
           <td>${m.memberId}</td>
           <td>${m.email}<br><small>${m.mobile}</small></td>
+          <td>${m.dob || '—'}</td>
+          <td>
+            <div style="font-size: 12px; max-width: 200px; white-space: normal;">
+              ${TreeViewer.esc(m.address || '—')}<br>
+              <b>${m.city || ''}, ${m.state || ''} ${m.pincode ? '- ' + m.pincode : ''}</b>
+            </div>
+          </td>
           <td>${TreeViewer.esc(m.sponsorName)}</td>
           <td><span class="badge badge-blue">Depth ${m.uplineDepth}</span></td>
           <td><b>₹${(m.walletBalance || 0).toLocaleString()}</b></td>
@@ -928,7 +955,7 @@ const App = {
         </tr>
       `).join('');
     } catch (err) {
-      tbody.innerHTML = `<tr><td colspan="7" class="alert alert-danger">${err.message}</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="9" class="alert alert-danger">${err.message}</td></tr>`;
     }
   },
 
