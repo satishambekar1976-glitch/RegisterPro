@@ -1,20 +1,16 @@
 /**
- * Commission Engine for 100-Level MLM Device Sales
+ * Commission Engine for 100-Level MLM Device Sales (async MongoDB version)
  */
 const { db } = require('./db');
 
-function resolveLevelCommission(levelsConfig, levelNumber, devicePrice) {
+function resolveLevelCommission(levelsConfig, levelNumber) {
   if (!levelsConfig) return 0;
 
-  // 1. Direct exact level check: "1", "2", etc.
-  if (levelsConfig[levelNumber] !== undefined) {
-    return Number(levelsConfig[levelNumber]);
-  }
-  if (levelsConfig[String(levelNumber)] !== undefined) {
-    return Number(levelsConfig[String(levelNumber)]);
-  }
+  // Direct exact level: "1", "2", etc.
+  if (levelsConfig[levelNumber] !== undefined) return Number(levelsConfig[levelNumber]);
+  if (levelsConfig[String(levelNumber)] !== undefined) return Number(levelsConfig[String(levelNumber)]);
 
-  // 2. Range match: "6-10", "11-20", "21-50", "51-100"
+  // Range match: "6-10", "11-20", etc.
   for (const [key, val] of Object.entries(levelsConfig)) {
     if (key.includes('-')) {
       const [startStr, endStr] = key.split('-');
@@ -25,39 +21,27 @@ function resolveLevelCommission(levelsConfig, levelNumber, devicePrice) {
       }
     }
   }
-
   return 0;
 }
 
-function distributeDeviceOrderCommissions(orderId) {
-  const order = db.getOrderById(orderId);
-  if (!order) {
-    throw new Error('Order not found');
-  }
+async function distributeDeviceOrderCommissions(orderId) {
+  const order = await db.getOrderById(orderId);
+  if (!order) throw new Error('Order not found');
 
-  const seller = db.getUserById(order.memberId);
-  if (!seller) {
-    throw new Error('Seller member not found');
-  }
+  const seller = await db.getUserById(order.memberId);
+  if (!seller) throw new Error('Seller member not found');
 
-  const device = db.getDeviceById(order.deviceId);
-  if (!device) {
-    throw new Error('Device not found');
-  }
+  const device = await db.getDeviceById(order.deviceId);
+  if (!device) throw new Error('Device not found');
 
-  // Find matching slab for device price
+  // Find matching slab
   let slab = null;
   if (device.slabs && device.slabs.length > 0) {
     slab = device.slabs.find(s => order.devicePrice >= s.minPrice && order.devicePrice <= s.maxPrice) || device.slabs[0];
   }
 
   if (!slab || !slab.levels) {
-    return {
-      success: false,
-      message: 'No commission slab configured for this device price',
-      distributedCount: 0,
-      totalAmount: 0
-    };
+    return { success: false, message: 'No commission slab configured for this device price', distributedCount: 0, totalAmount: 0 };
   }
 
   const uplineChain = seller.uplineChain || [];
@@ -68,20 +52,16 @@ function distributeDeviceOrderCommissions(orderId) {
   for (let i = 0; i < maxLevels; i++) {
     const level = i + 1;
     const uplineUserId = uplineChain[i];
-    const uplineMember = db.getUserById(uplineUserId);
+    const uplineMember = await db.getUserById(uplineUserId);
 
     if (!uplineMember) continue;
+    if (uplineMember.status !== 'active' && uplineMember.role !== 'admin') continue;
 
-    // Only active members earn commission
-    if (uplineMember.status !== 'active') {
-      continue;
-    }
-
-    const commPerUnit = resolveLevelCommission(slab.levels, level, order.devicePrice);
+    const commPerUnit = resolveLevelCommission(slab.levels, level);
     const commTotal = commPerUnit * (order.quantity || 1);
 
     if (commTotal > 0) {
-      const commRecord = db.addCommission({
+      const commRecord = await db.addCommission({
         orderId: order.id,
         orderNumber: order.orderNumber,
         deviceId: device.id,
@@ -105,15 +85,7 @@ function distributeDeviceOrderCommissions(orderId) {
     }
   }
 
-  return {
-    success: true,
-    distributedCount: distributed.length,
-    totalAmount,
-    distributed
-  };
+  return { success: true, distributedCount: distributed.length, totalAmount, distributed };
 }
 
-module.exports = {
-  distributeDeviceOrderCommissions,
-  resolveLevelCommission
-};
+module.exports = { distributeDeviceOrderCommissions, resolveLevelCommission };

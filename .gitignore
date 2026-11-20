@@ -6,3 +6,4 @@ yarn-error.log*
 *.tmp.*
 public/uploads/*
 !public/uploads/.gitkeep
+.env
