@@ -22,7 +22,6 @@
       <nav class="nav-links">
         <button class="btn btn-sm btn-outline nav-guest" data-nav="home">Home</button>
         <button class="btn btn-sm btn-outline nav-guest" data-nav="register">Register</button>
-        <button class="btn btn-sm btn-outline nav-guest" onclick="App.quickAdminLogin()">🔑 Admin Portal</button>
         <button class="btn btn-sm btn-primary nav-guest" data-nav="login">Sign In</button>
 
         <span id="topUserBadge" class="brand-badge" style="display: none;">User</span>
@@ -116,9 +115,7 @@
 
         <!-- Detected Sponsor Banner -->
         <div id="sponsorInfoBox" class="alert alert-success" style="display: none; margin-bottom: 18px;">
-          <div style="font-size: 13px;">You are joining under Sponsor:</div>
-          <div id="sponsorNameDisplay" style="font-size: 15px; font-weight: 700; margin-top: 2px;">—</div>
-          <div id="sponsorDetailsDisplay" style="font-size: 12px; color: #15803d;">—</div>
+          <div id="sponsorNameDisplay" style="font-size: 15px; font-weight: 700;">—</div>
         </div>
 
         <form id="registerForm">
@@ -193,7 +190,6 @@
       <div class="card" style="max-width: 440px; margin: 40px auto;">
         <div class="card-header">
           <h1 style="font-size: 20px; font-weight: 800;">Sign In</h1>
-          <span class="badge badge-blue">Member & Admin</span>
         </div>
 
         <form id="loginForm">
@@ -208,16 +204,7 @@
           <button type="submit" class="btn btn-primary" style="width: 100%; padding: 11px; margin-top: 10px;">
             Sign In
           </button>
-          <button type="button" class="btn btn-secondary" onclick="App.quickAdminLogin()" style="width: 100%; padding: 11px; margin-top: 8px;">
-            🔑 One-Click Admin Sign In
-          </button>
         </form>
-
-        <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-muted);">
-          <b>Admin Demo Access:</b><br>
-          Email: <code style="background: #e2e8f0; padding: 2px 4px; border-radius: 4px;">admin@registerpro.demo</code><br>
-          Password: <code style="background: #e2e8f0; padding: 2px 4px; border-radius: 4px;">Admin123!</code>
-        </div>
       </div>
     </section>
 

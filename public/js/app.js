@@ -114,7 +114,6 @@ const App = {
   async lookupSponsor(code) {
     const infoBox = document.getElementById('sponsorInfoBox');
     const nameEl = document.getElementById('sponsorNameDisplay');
-    const detailsEl = document.getElementById('sponsorDetailsDisplay');
 
     if (!code) {
       if (infoBox) infoBox.style.display = 'none';
@@ -125,8 +124,7 @@ const App = {
       const data = await API.getSponsor(code);
       if (data.valid && data.sponsor) {
         if (infoBox) infoBox.style.display = 'block';
-        if (nameEl) nameEl.textContent = `${data.sponsor.name} (${data.sponsor.memberId})`;
-        if (detailsEl) detailsEl.textContent = `${data.sponsor.city ? data.sponsor.city + ', ' : ''}${data.sponsor.state || ''}`;
+        if (nameEl) nameEl.textContent = data.sponsor.name;
       }
     } catch (err) {
       if (infoBox) infoBox.style.display = 'none';
@@ -274,23 +272,6 @@ const App = {
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = 'Sign In';
-    }
-  },
-
-  async quickAdminLogin() {
-    try {
-      showToast('Signing into Administrator Portal...', 'info');
-      const res = await API.login({
-        email: 'admin@registerpro.demo',
-        password: 'Admin123!'
-      });
-      API.setToken(res.token);
-      this.currentUser = res.user;
-      this.updateNav(res.user);
-      showToast('Admin logged in successfully', 'success');
-      this.navigateTo('admin');
-    } catch (err) {
-      showToast(err.message, 'danger');
     }
   },
 

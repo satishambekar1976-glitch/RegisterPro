@@ -79,6 +79,8 @@ The server will start at: **`http://localhost:3000`**
 - **Password:** `Admin123!`
 - **Referral Code:** `ADMINREF`
 
+Referral links must be copied from the public hosted HTTPS site. The browser-only demo opened from `file://` or `localhost` cannot create links that other people can open.
+
 ---
 
 ## 🌐 How to Deploy to a Server (Production)
