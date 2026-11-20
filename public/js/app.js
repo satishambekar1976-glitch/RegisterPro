@@ -143,6 +143,14 @@ const App = {
       const me = await API.getMe();
       this.currentUser = me;
       this.updateNav(me);
+
+      // If a referral code is in the URL, prioritize showing the registration page
+      const hasRef = !!new URLSearchParams(window.location.search).get('ref');
+      if (hasRef) {
+        this.navigateTo('register');
+        return;
+      }
+
       if (this.currentView === 'login' || this.currentView === 'register' || this.currentView === 'home') {
         if (me.role === 'admin') {
           this.navigateTo('admin');
